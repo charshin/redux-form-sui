@@ -36,7 +36,7 @@ const Input = ({ name, ...props }) => {
               readonly={readonly}
               size={size}
               icon={!!icon}
-              iconPosition={iconPosition}
+              iconPosition={icon && iconPosition}
               css={{
                 '.ui.form .fields .field &.ui.input input, .ui.form .field &.ui.input input': {
                   width: '100%',
@@ -86,7 +86,7 @@ const Input = ({ name, ...props }) => {
                     disabled={disabled}
                     size={size}
                     icon={!!icon}
-                    iconPosition={iconPosition}
+                    iconPosition={icon && iconPosition}
                     css={{
                       '.ui.form .fields .field &.ui.input input, .ui.form .field &.ui.input input': {
                         width: '100%',
