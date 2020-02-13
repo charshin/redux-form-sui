@@ -13,10 +13,11 @@ const useReduxForm = memoize(({ layout, config }) => {
     );
   }
   /* Header */
-  const renderHeader = ({ items, style, className, formProps }) => (
+  const renderHeader = ({ items, style, css, className, formProps }) => (
     // TODO: Open wrapper for Header
     <div
       style={{ display: 'flex', marginBottom: 50, ...style }}
+      css={css}
       className={className}
     >
       {items.map(({ id: itemKey, component, render, ...itemProps }) => {
@@ -49,6 +50,7 @@ const useReduxForm = memoize(({ layout, config }) => {
   );
   renderHeader.defaultProps = {
     style: null,
+    css: null,
     className: '',
   };
   renderHeader.propTypes = {
@@ -62,6 +64,7 @@ const useReduxForm = memoize(({ layout, config }) => {
       }),
     ).isRequired,
     style: PropTypes.object, // eslint-disable-line
+    css: PropTypes.object, // eslint-disable-line
     className: PropTypes.string,
     formProps: PropTypes.object.isRequired, // eslint-disable-line
   };
@@ -139,37 +142,43 @@ const useReduxForm = memoize(({ layout, config }) => {
   };
 
   /* Body */
-  const renderBody = ({ sections, formProps }) =>
-    sections.map(({ component, render, ...sectionProps }) => {
-      if (component) {
-        return createElement(
-          component,
-          {
-            key: sectionProps.id || sectionProps.name,
-            ...sectionProps,
-            formProps,
-          },
-          renderSection({ ...sectionProps, formProps }),
-        );
-      }
-      if (render) {
-        return (
-          <div key={sectionProps.id || sectionProps.name}>
-            {render({
+  const renderBody = ({ css, className, sections, formProps }) => (
+    <div css={css} className={className}>
+      {sections.map(({ component, render, ...sectionProps }) => {
+        if (component) {
+          return createElement(
+            component,
+            {
+              key: sectionProps.id || sectionProps.name,
               ...sectionProps,
               formProps,
-              children: renderSection({ ...sectionProps, formProps }),
-            })}
-          </div>
-        );
-      }
-      return createElement(renderSection, {
-        key: sectionProps.id || sectionProps.name,
-        ...sectionProps,
-        formProps,
-      });
-    });
-  renderBody.defaultProps = {};
+            },
+            renderSection({ ...sectionProps, formProps }),
+          );
+        }
+        if (render) {
+          return (
+            <div key={sectionProps.id || sectionProps.name}>
+              {render({
+                ...sectionProps,
+                formProps,
+                children: renderSection({ ...sectionProps, formProps }),
+              })}
+            </div>
+          );
+        }
+        return createElement(renderSection, {
+          key: sectionProps.id || sectionProps.name,
+          ...sectionProps,
+          formProps,
+        });
+      })}
+    </div>
+  );
+  renderBody.defaultProps = {
+    css: null,
+    className: '',
+  };
   renderBody.propTypes = {
     sections: PropTypes.arrayOf(
       PropTypes.shape({
@@ -191,13 +200,16 @@ const useReduxForm = memoize(({ layout, config }) => {
       }),
     ).isRequired,
     formProps: PropTypes.object.isRequired, // eslint-disable-line
+    css: PropTypes.object, // eslint-disable-line
+    className: PropTypes.string,
   };
 
   /* Footer */
-  const renderFooter = ({ items, style, className, formProps }) => (
+  const renderFooter = ({ items, style, css, className, formProps }) => (
     // TODO: Open wrapper for Header
     <div
       style={{ display: 'flex', marginTop: 50, ...style }}
+      css={css}
       className={className}
     >
       {items.map(({ id: itemKey, component, render, ...itemProps }) => {
@@ -230,6 +242,7 @@ const useReduxForm = memoize(({ layout, config }) => {
   );
   renderFooter.defaultProps = {
     style: null,
+    css: null,
     className: '',
   };
   renderFooter.propTypes = {
@@ -243,6 +256,7 @@ const useReduxForm = memoize(({ layout, config }) => {
       }),
     ).isRequired,
     style: PropTypes.object, // eslint-disable-line
+    css: PropTypes.object, // eslint-disable-line
     className: PropTypes.string,
     formProps: PropTypes.object.isRequired, // eslint-disable-line
   };
