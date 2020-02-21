@@ -317,7 +317,7 @@ const useReduxForm = memoize(({ layout, config }) => {
   };
   form.defaultProps = {
     autoComplete: 'off',
-    size: 'large',
+    size: null,
     formProps: {},
     style: null,
     className: '',
