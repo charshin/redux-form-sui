@@ -95,7 +95,6 @@ const Select = ({ name, ...props }) => {
                   onBlur={() => onBlur()}
                   selection
                   search // ? size only takes effect when this is supplied
-                  disabled={disabled}
                   className={size}
                 />
               }

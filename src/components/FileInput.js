@@ -55,7 +55,6 @@ const FileInput = ({
           <div>
             <SuiInput
               id={name}
-              disabled={disabled}
               size={size}
               icon={!!icon}
               iconPosition={iconPosition}
