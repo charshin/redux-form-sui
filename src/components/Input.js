@@ -26,7 +26,10 @@ const Input = ({ name, ...props }) => {
         } = fieldProps;
 
         return (
-          <SuiForm.Field width={colspan} style={{ opacity: hidden ? 0 : 1 }}>
+          <SuiForm.Field
+            width={colspan}
+            style={{ visibility: hidden ? 'hidden' : 'visible' }}
+          >
             <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
               {label}
             </label>
@@ -72,7 +75,7 @@ const Input = ({ name, ...props }) => {
             required={required}
             disabled={disabled}
             width={colspan}
-            style={{ opacity: hidden ? 0 : 1 }}
+            style={{ visibility: hidden ? 'hidden' : 'visible' }}
           >
             <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
               {label}
@@ -83,7 +86,6 @@ const Input = ({ name, ...props }) => {
                 <div>
                   <SuiInput
                     id={id || name}
-                    disabled={disabled}
                     size={size}
                     icon={!!icon}
                     iconPosition={icon && iconPosition}
