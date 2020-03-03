@@ -133,7 +133,6 @@ const DatePicker = ({ name, ...props }) => {
               onChange={onChange}
               customInput={<CustomInput fieldProps={fieldProps} />}
               placeholderText={placeholder}
-              disabled={disabled}
               {...datePickerProps}
             />
           </SuiForm.Field>

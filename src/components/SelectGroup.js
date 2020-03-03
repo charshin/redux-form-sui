@@ -88,7 +88,6 @@ const SelectGroup = ({ name, ...props }) => {
                       type="button"
                       active={value === selected}
                       onClick={() => onChange({ options, selected: value })}
-                      disabled={disabled}
                     >
                       {text}
                     </SuiButton>
