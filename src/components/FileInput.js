@@ -71,7 +71,8 @@ const FileInput = ({
                 // * This is not a typo. It is DOM-related props
                 // * https://reactjs.org/docs/dom-elements.html
                 readOnly
-                value={file?.name}
+                // * Default to empty string to ensure always in controlled mode
+                value={file?.name || ''}
                 // ? send undefined to keep existing value in redux-form
                 onFocus={() => onFocus()}
                 onClick={() => fileInputRef.current.click()}

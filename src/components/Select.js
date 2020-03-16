@@ -86,7 +86,8 @@ const Select = ({ name, ...props }) => {
                   {...dropdownProps}
                   id={id || name}
                   options={options}
-                  value={selected}
+                  // * Default to empty string to ensure always in controlled mode
+                  value={selected || ''}
                   onFocus={onFocus}
                   onChange={(_, { value }) =>
                     onChange({ options, selected: value })

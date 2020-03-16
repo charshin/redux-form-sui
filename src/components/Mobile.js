@@ -67,7 +67,8 @@ const Mobile = ({
               <SuiDropdown
                 {...dropdownProps}
                 options={countryCode.input.value?.options || []}
-                value={countryCode.input.value?.selected}
+                // * Default to empty string to ensure always in controlled mode
+                value={countryCode.input.value?.selected || ''}
                 onFocus={countryCode.input.onFocus}
                 onChange={(_, { value }) =>
                   countryCode.input.onChange({
