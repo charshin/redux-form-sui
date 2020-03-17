@@ -60,6 +60,8 @@ const Password = ({
               <input
                 {...inputProps}
                 {...input}
+                // * Default to empty string to ensure always in controlled mode
+                value={input.value || ''}
                 type={peek ? 'text' : 'password'}
                 autoComplete="new-password"
               />

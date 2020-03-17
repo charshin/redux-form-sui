@@ -37,7 +37,8 @@ const Select = ({ name, ...props }) => {
             <SuiDropdown
               {...dropdownProps}
               id={id || name}
-              value={selected}
+              // * Default to empty string to ensure always in controlled mode
+              value={selected || ''}
               options={options}
               selection
               open={false}

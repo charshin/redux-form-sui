@@ -35,7 +35,8 @@ const Input = ({ name, ...props }) => {
             </label>
             <SuiInput
               id={id || name}
-              value={value}
+              // * Default to empty string to ensure always in controlled mode
+              value={value || ''}
               readonly={readonly}
               size={size}
               icon={!!icon}
@@ -96,7 +97,12 @@ const Input = ({ name, ...props }) => {
                     }}
                   >
                     {icon && iconPosition === 'left' && <SuiIcon {...icon} />}
-                    <input {...inputProps} {...input} />
+                    <input
+                      {...inputProps}
+                      {...input}
+                      // * Default to empty string to ensure always in controlled mode
+                      value={input.value || ''}
+                    />
                     {icon && iconPosition === 'right' && <SuiIcon {...icon} />}
                   </SuiInput>
                 </div>

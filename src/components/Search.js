@@ -122,7 +122,8 @@ const Search = ({
               id={name}
               loading={loading}
               size={size}
-              value={value?.search}
+              // * Default to empty string to ensure always in controlled mode
+              value={value?.search || ''}
               results={value?.found}
               onResultSelect={(_, { result }) => onSelect?.(result)}
               onFocus={() => onFocus(value)}

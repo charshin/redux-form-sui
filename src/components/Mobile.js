@@ -92,7 +92,12 @@ const Mobile = ({
                   },
                 }}
               />
-              <input {...inputProps} {...number.input} />
+              <input
+                {...inputProps}
+                {...number.input}
+                // * Default to empty string to ensure always in controlled mode
+                value={number.input.value || ''}
+              />
               {icon && iconPosition === 'right' && <SuiIcon {...icon} />}
             </SuiInput>
           </div>
