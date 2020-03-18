@@ -33,9 +33,11 @@ const FileInput = ({
       disabled={disabled}
       width={colspan}
     >
-      <label htmlFor={name} css={{ whiteSpace: 'pre', color: 'red' }}>
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={name} css={{ whiteSpace: 'pre', color: 'red' }}>
+          {label}
+        </label>
+      )}
       <input
         ref={fileInputRef}
         type="file"

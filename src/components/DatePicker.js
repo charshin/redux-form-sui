@@ -89,9 +89,11 @@ const DatePicker = ({ name, ...props }) => {
 
         return (
           <SuiForm.Field width={colspan}>
-            <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-              {label}
-            </label>
+            {label && (
+              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+                {label}
+              </label>
+            )}
             <ReactDatePicker
               id={id || name}
               selected={value}

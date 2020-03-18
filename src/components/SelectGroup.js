@@ -31,7 +31,11 @@ const SelectGroup = ({ name, ...props }) => {
 
         return (
           <SuiForm.Field width={colspan}>
-            <label style={{ whiteSpace: 'pre' }}>{label}</label>
+            {label && (
+              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+                {label}
+              </label>
+            )}
             <SuiButton.Group toggle fluid compact={compact} size={size}>
               {options.map(({ key, value, text }) => (
                 <SuiButton
@@ -78,7 +82,11 @@ const SelectGroup = ({ name, ...props }) => {
             disabled={disabled}
             width={colspan}
           >
-            <label style={{ whiteSpace: 'pre' }}>{label}</label>
+            {label && (
+              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+                {label}
+              </label>
+            )}
             <SuiPopup
               trigger={
                 <SuiButton.Group toggle fluid compact={compact} size={size}>

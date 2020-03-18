@@ -30,9 +30,11 @@ const Input = ({ name, ...props }) => {
             width={colspan}
             style={{ visibility: hidden ? 'hidden' : 'visible' }}
           >
-            <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-              {label}
-            </label>
+            {label && (
+              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+                {label}
+              </label>
+            )}
             <SuiInput
               id={id || name}
               // * Default to empty string to ensure always in controlled mode
@@ -78,9 +80,11 @@ const Input = ({ name, ...props }) => {
             width={colspan}
             style={{ visibility: hidden ? 'hidden' : 'visible' }}
           >
-            <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-              {label}
-            </label>
+            {label && (
+              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+                {label}
+              </label>
+            )}
             <SuiPopup
               trigger={
                 // ? This wrapper is necessary for 'poppper' to work with '@emotion/core'

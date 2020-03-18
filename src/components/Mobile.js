@@ -41,7 +41,11 @@ const Mobile = ({
       disabled={disabled}
       width={colspan}
     >
-      {label && <label htmlFor={number.input.name}>{label}</label>}
+      {label && (
+        <label htmlFor={number.input.name} style={{ whiteSpace: 'pre' }}>
+          {label}
+        </label>
+      )}
       <SuiPopup
         trigger={
           // ? This wrapper is necessary for 'poppper' to work with '@emotion/core'

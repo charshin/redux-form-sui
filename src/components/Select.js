@@ -31,9 +31,11 @@ const Select = ({ name, ...props }) => {
 
         return (
           <SuiForm.Field width={colspan}>
-            <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-              {label}
-            </label>
+            {label && (
+              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+                {label}
+              </label>
+            )}
             <SuiDropdown
               {...dropdownProps}
               id={id || name}
@@ -78,9 +80,11 @@ const Select = ({ name, ...props }) => {
             disabled={disabled}
             width={colspan}
           >
-            <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-              {label}
-            </label>
+            {label && (
+              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+                {label}
+              </label>
+            )}
             <SuiPopup
               trigger={
                 <SuiDropdown

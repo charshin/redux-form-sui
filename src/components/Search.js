@@ -102,9 +102,11 @@ const Search = ({
       disabled={disabled}
       width={colspan}
     >
-      <label htmlFor={name} style={{ whiteSpace: 'pre' }}>
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={name} style={{ whiteSpace: 'pre' }}>
+          {label}
+        </label>
+      )}
       <SuiPopup
         trigger={
           // ? This wrapper is necessary for 'poppper' to work with '@emotion/core'
