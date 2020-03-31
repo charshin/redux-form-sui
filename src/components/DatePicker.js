@@ -126,9 +126,11 @@ const DatePicker = ({ name, ...props }) => {
             disabled={disabled}
             width={colspan}
           >
-            <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-              {label}
-            </label>
+            {label && (
+              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+                {label}
+              </label>
+            )}
             <ReactDatePicker
               id={id || name}
               selected={value}
