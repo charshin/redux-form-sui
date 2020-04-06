@@ -40,6 +40,12 @@ const FileInput = ({
         ref={fileInputRef}
         type="file"
         accept={accept}
+        onClick={e => {
+          // * onChange is not fired when the same file is uploaded twice,
+          // * so this clears the current file on click, to allow onChange to fire.
+          // * There is no other React specific way of controlling file inputs
+          e.target.value = '';
+        }}
         onChange={e => {
           if (e.target.files?.[0]) {
             onChange(e.target.files?.[0]);
