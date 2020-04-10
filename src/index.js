@@ -345,4 +345,5 @@ export { default as DatePicker } from './components/DatePicker';
 export { default as Mobile } from './components/Mobile';
 export { default as Search } from './components/Search';
 export { default as FileInput } from './components/FileInput';
+export { default as TextArea } from './components/TextArea';
 export default useReduxForm;
