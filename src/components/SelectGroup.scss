@@ -12,3 +12,9 @@
   background-color: #e7eae9 !important;
   color: rgba(0, 0, 0, 0.6) !important;
 }
+
+.field.error .ui.toggle.buttons .ui.button {
+  background-color: #fff0f0;
+  border: 1px solid #dbb1b1;
+  color: #a94442;
+}
