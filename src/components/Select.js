@@ -4,6 +4,7 @@ import {
   Form as SuiForm,
   Dropdown as SuiDropdown,
   Popup as SuiPopup,
+  Header as SuiHeader,
 } from 'semantic-ui-react';
 import { Field } from 'redux-form';
 import * as R from 'ramda';
@@ -20,6 +21,8 @@ const Select = ({ name, ...props }) => {
           },
           id,
           label,
+          subheader,
+          hidden,
           colspan,
           dropdownProps,
         } = fieldProps;
@@ -31,11 +34,21 @@ const Select = ({ name, ...props }) => {
         }
 
         return (
-          <SuiForm.Field width={colspan}>
+          <SuiForm.Field
+            width={colspan}
+            style={{ display: hidden ? 'none' : 'block' }}
+          >
             {label && (
               <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
                 {label}
               </label>
+            )}
+            {subheader && (
+              <SuiHeader
+                subheader={subheader}
+                size={size}
+                css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
+              />
             )}
             <SuiDropdown
               {...dropdownProps}
@@ -62,8 +75,10 @@ const Select = ({ name, ...props }) => {
           meta: { touched, error, active },
           id,
           label,
+          subheader,
           required,
           disabled,
+          hidden,
           colspan,
           dropdownProps,
         } = fieldProps;
@@ -80,11 +95,19 @@ const Select = ({ name, ...props }) => {
             required={required}
             disabled={disabled}
             width={colspan}
+            style={{ display: hidden ? 'none' : 'initial' }}
           >
             {label && (
               <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
                 {label}
               </label>
+            )}
+            {subheader && (
+              <SuiHeader
+                subheader={subheader}
+                size={size}
+                css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
+              />
             )}
             <SuiPopup
               trigger={

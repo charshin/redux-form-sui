@@ -7,6 +7,7 @@ import {
   Input as SuiInput,
   Icon as SuiIcon,
   Popup as SuiPopup,
+  Header as SuiHeader,
 } from 'semantic-ui-react';
 import { Field } from 'redux-form';
 
@@ -18,6 +19,7 @@ const Input = ({ name, ...props }) => {
           input: { value },
           id,
           label,
+          subheader,
           hidden,
           icon,
           iconPosition,
@@ -34,6 +36,13 @@ const Input = ({ name, ...props }) => {
               <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
                 {label}
               </label>
+            )}
+            {subheader && (
+              <SuiHeader
+                subheader={subheader}
+                size={size}
+                css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
+              />
             )}
             <SuiInput
               id={id || name}
@@ -63,6 +72,7 @@ const Input = ({ name, ...props }) => {
           meta: { touched, error, active },
           id,
           label,
+          subheader,
           required,
           disabled,
           hidden,
@@ -84,6 +94,13 @@ const Input = ({ name, ...props }) => {
               <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
                 {label}
               </label>
+            )}
+            {subheader && (
+              <SuiHeader
+                subheader={subheader}
+                size={size}
+                css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
+              />
             )}
             <SuiPopup
               trigger={
