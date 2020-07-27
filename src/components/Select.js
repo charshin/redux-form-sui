@@ -82,6 +82,8 @@ const Select = ({ name, ...props }) => {
           hidden,
           colspan,
           dropdownProps,
+          subLabelProps,
+          popupProps,
         } = fieldProps;
 
         if (!R.is(Array, options)) {
@@ -106,12 +108,20 @@ const Select = ({ name, ...props }) => {
             )}
             {sublabel && (
               <SuiHeader
+                {...subLabelProps}
                 sublabel={sublabel}
                 size={size}
-                css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
+                css={{
+                  '&.ui.header': { margin: '0px 0px 5px 0px' },
+                  '&.ui.header .sub.header': {
+                    color: subLabelProps?.color,
+                    fontSize: subLabelProps?.fontSize,
+                  },
+                }}
               />
             )}
             <SuiPopup
+              {...popupProps}
               trigger={
                 <SuiDropdown
                   {...dropdownProps}
@@ -133,6 +143,7 @@ const Select = ({ name, ...props }) => {
               content={error}
               style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
               inverted
+              size={popupProps?.size}
             />
           </SuiForm.Field>
         );

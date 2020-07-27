@@ -42,7 +42,7 @@ const Input = ({ name, ...props }) => {
               <SuiHeader
                 sublabel={sublabel}
                 size={size}
-                css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
+                css={{ '&.ui.header': { margin: '0px 0px 5px 0px' } }}
               />
             )}
             <SuiInput
@@ -81,6 +81,7 @@ const Input = ({ name, ...props }) => {
           iconPosition,
           colspan,
           inputProps,
+          popupProps,
         } = fieldProps;
 
         return (
@@ -104,6 +105,7 @@ const Input = ({ name, ...props }) => {
               />
             )}
             <SuiPopup
+              {...popupProps}
               trigger={
                 // ? This wrapper is necessary for 'poppper' to work with '@emotion/core'
                 <div>
@@ -132,6 +134,7 @@ const Input = ({ name, ...props }) => {
               content={error}
               style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
               inverted
+              size={popupProps?.size}
             />
           </SuiForm.Field>
         );
