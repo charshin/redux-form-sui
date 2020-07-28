@@ -21,7 +21,7 @@ const Select = ({ name, ...props }) => {
           },
           id,
           label,
-          subheader,
+          sublabel,
           hidden,
           colspan,
           dropdownProps,
@@ -36,16 +36,17 @@ const Select = ({ name, ...props }) => {
         return (
           <SuiForm.Field
             width={colspan}
-            style={{ display: hidden ? 'none' : 'block' }}
+            // ! TODO: add animation so the form doesn't jump when showing and hiding component
+            style={{ display: hidden ? 'none' : 'initial' }}
           >
             {label && (
               <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
                 {label}
               </label>
             )}
-            {subheader && (
+            {sublabel && (
               <SuiHeader
-                subheader={subheader}
+                sublabel={sublabel}
                 size={size}
                 css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
               />
@@ -75,7 +76,7 @@ const Select = ({ name, ...props }) => {
           meta: { touched, error, active },
           id,
           label,
-          subheader,
+          sublabel,
           required,
           disabled,
           hidden,
@@ -95,6 +96,7 @@ const Select = ({ name, ...props }) => {
             required={required}
             disabled={disabled}
             width={colspan}
+            // ! TODO: add animation so the form doesn't jump when showing and hiding component
             style={{ display: hidden ? 'none' : 'initial' }}
           >
             {label && (
@@ -102,9 +104,9 @@ const Select = ({ name, ...props }) => {
                 {label}
               </label>
             )}
-            {subheader && (
+            {sublabel && (
               <SuiHeader
-                subheader={subheader}
+                sublabel={sublabel}
                 size={size}
                 css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
               />

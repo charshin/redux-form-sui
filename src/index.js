@@ -5,7 +5,6 @@ import { FormSection, reduxForm } from 'redux-form';
 import { Form as SuiForm } from 'semantic-ui-react';
 import memoize from 'fast-memoize';
 import * as R from 'ramda';
-import { css, jsx } from '@emotion/core';
 
 const useReduxForm = memoize(({ layout, config }) => {
   if (!layout || !config) {
@@ -34,16 +33,15 @@ const useReduxForm = memoize(({ layout, config }) => {
         }
         if (render) {
           return (
-            <>
+            <div key={itemKey}>
               {render({
-                key: itemKey,
                 disabled: formProps.disabled,
                 readonly: formProps.readonly,
                 size: formProps.size,
                 ...itemProps,
                 formProps,
               })}
-            </>
+            </div>
           );
         }
         return null;
