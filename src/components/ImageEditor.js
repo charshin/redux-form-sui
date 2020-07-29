@@ -15,6 +15,7 @@ const ImageEditor = ({
   disabled,
   readonly,
   colspan,
+  popupProps,
 }) =>
   readonly ? null : (
     <SuiForm.Field
@@ -29,6 +30,7 @@ const ImageEditor = ({
         </label>
       )}
       <SuiPopup
+        {...popupProps}
         trigger={
           // ? This wrapper is necessary for 'poppper' to work with '@emotion/core'
           <div>
@@ -47,6 +49,7 @@ const ImageEditor = ({
         content={error}
         style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
         inverted
+        size={popupProps?.size}
       />
     </SuiForm.Field>
   );
@@ -81,4 +84,4 @@ ImageEditor.propTypes = {
   readonly: PropTypes.bool,
 };
 
-export default (props) => <Field {...props} component={ImageEditor} />;
+export default props => <Field {...props} component={ImageEditor} />;

@@ -24,6 +24,7 @@ const Mobile = ({
   colspan,
   dropdownProps,
   inputProps,
+  popupProps,
   ...props
 }) => {
   const {
@@ -47,6 +48,7 @@ const Mobile = ({
         </label>
       )}
       <SuiPopup
+        {...popupProps}
         trigger={
           // ? This wrapper is necessary for 'poppper' to work with '@emotion/core'
           <div>
@@ -109,6 +111,7 @@ const Mobile = ({
         content={error}
         style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
         inverted
+        size={popupProps?.size}
       />
     </SuiForm.Field>
   );
@@ -124,6 +127,7 @@ Mobile.defaultProps = {
   colspan: null,
   dropdownProps: {},
   inputProps: {},
+  popupProps: {},
 };
 
 Mobile.propTypes = {
@@ -142,6 +146,9 @@ Mobile.propTypes = {
   }),
   inputProps: PropTypes.shape({
     placeholder: PropTypes.string,
+  }),
+  popupProps: PropTypes.shape({
+    size: PropTypes.string,
   }),
 };
 

@@ -24,6 +24,7 @@ const Password = ({
   colspan,
   inputProps,
   onForgot,
+  popupProps,
   ...props
 }) => {
   const [peek, setPeek] = useState(false);
@@ -37,6 +38,7 @@ const Password = ({
     >
       {label && <label htmlFor={input.name}>{label}</label>}
       <SuiPopup
+        {...popupProps}
         trigger={
           // ? This wrapper is necessary for 'poppper' to work with '@emotion/core'
           <div>
@@ -95,6 +97,7 @@ const Password = ({
         content={error}
         style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
         inverted
+        size={popupProps?.size}
       />
     </SuiForm.Field>
   );

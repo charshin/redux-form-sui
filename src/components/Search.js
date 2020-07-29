@@ -53,6 +53,7 @@ const Search = ({
   autoTrigger,
   triggerDelay,
   onSelect,
+  popupProps,
 }) => {
   const [loading, setLoading] = useState(null);
 
@@ -108,6 +109,7 @@ const Search = ({
         </label>
       )}
       <SuiPopup
+        {...popupProps}
         trigger={
           // ? This wrapper is necessary for 'poppper' to work with '@emotion/core'
           <div>
@@ -156,6 +158,7 @@ const Search = ({
         content={error}
         style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
         inverted
+        size={popupProps?.size}
       />
     </SuiForm.Field>
   );
@@ -174,6 +177,7 @@ Search.defaultProps = {
   filter: null,
   autoTrigger: true,
   triggerDelay: 500,
+  popupProps: {},
 };
 
 Search.propTypes = {
@@ -196,6 +200,9 @@ Search.propTypes = {
   autoTrigger: PropTypes.bool,
   triggerDelay: PropTypes.number,
   onSelect: PropTypes.func.isRequired,
+  popupProps: PropTypes.shape({
+    size: PropTypes.string,
+  }),
 };
 
 export default props => <Field {...props} component={Search} />;
