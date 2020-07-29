@@ -42,7 +42,7 @@ const Input = ({ name, ...props }) => {
             {sublabel && (
               <SuiHeader
                 {...sublabelProps}
-                sublabel={sublabel}
+                subheader={sublabel}
                 size={size}
                 css={{
                   '&.ui.header': { margin: '0px 0px 5px 0px' },
@@ -109,7 +109,7 @@ const Input = ({ name, ...props }) => {
             {sublabel && (
               <SuiHeader
                 {...sublabelProps}
-                sublabel={sublabel}
+                subheader={sublabel}
                 size={size}
                 css={{
                   '&.ui.header': { margin: '0px 0px 5px 0px' },
@@ -150,7 +150,6 @@ const Input = ({ name, ...props }) => {
               content={error}
               style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
               inverted
-              size={popupProps?.size}
             />
           </SuiForm.Field>
         );
