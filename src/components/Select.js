@@ -25,6 +25,7 @@ const Select = ({ name, ...props }) => {
           hidden,
           colspan,
           dropdownProps,
+          sublabelProps,
         } = fieldProps;
 
         if (!options?.length) {
@@ -46,9 +47,16 @@ const Select = ({ name, ...props }) => {
             )}
             {sublabel && (
               <SuiHeader
+                {...sublabelProps}
                 sublabel={sublabel}
                 size={size}
-                css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
+                css={{
+                  '&.ui.header': { margin: '0px 0px 5px 0px' },
+                  '&.ui.header .sub.header': {
+                    color: sublabelProps?.color,
+                    fontSize: sublabelProps?.fontSize,
+                  },
+                }}
               />
             )}
             <SuiDropdown
@@ -82,7 +90,7 @@ const Select = ({ name, ...props }) => {
           hidden,
           colspan,
           dropdownProps,
-          subLabelProps,
+          sublabelProps,
           popupProps,
         } = fieldProps;
 
@@ -108,14 +116,14 @@ const Select = ({ name, ...props }) => {
             )}
             {sublabel && (
               <SuiHeader
-                {...subLabelProps}
+                {...sublabelProps}
                 sublabel={sublabel}
                 size={size}
                 css={{
                   '&.ui.header': { margin: '0px 0px 5px 0px' },
                   '&.ui.header .sub.header': {
-                    color: subLabelProps?.color,
-                    fontSize: subLabelProps?.fontSize,
+                    color: sublabelProps?.color,
+                    fontSize: sublabelProps?.fontSize,
                   },
                 }}
               />

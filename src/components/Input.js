@@ -25,6 +25,7 @@ const Input = ({ name, ...props }) => {
           iconPosition,
           colspan,
           inputProps,
+          sublabelProps,
         } = fieldProps;
 
         return (
@@ -40,9 +41,16 @@ const Input = ({ name, ...props }) => {
             )}
             {sublabel && (
               <SuiHeader
+                {...sublabelProps}
                 sublabel={sublabel}
                 size={size}
-                css={{ '&.ui.header': { margin: '0px 0px 5px 0px' } }}
+                css={{
+                  '&.ui.header': { margin: '0px 0px 5px 0px' },
+                  '&.ui.header .sub.header': {
+                    color: sublabelProps?.color,
+                    fontSize: sublabelProps?.fontSize,
+                  },
+                }}
               />
             )}
             <SuiInput
@@ -82,6 +90,7 @@ const Input = ({ name, ...props }) => {
           colspan,
           inputProps,
           popupProps,
+          sublabelProps,
         } = fieldProps;
 
         return (
@@ -99,9 +108,16 @@ const Input = ({ name, ...props }) => {
             )}
             {sublabel && (
               <SuiHeader
+                {...sublabelProps}
                 sublabel={sublabel}
                 size={size}
-                css={{ '&.ui.header': { margin: '0em 0em 0.28571429rem 0em' } }}
+                css={{
+                  '&.ui.header': { margin: '0px 0px 5px 0px' },
+                  '&.ui.header .sub.header': {
+                    color: sublabelProps?.color,
+                    fontSize: sublabelProps?.fontSize,
+                  },
+                }}
               />
             )}
             <SuiPopup
