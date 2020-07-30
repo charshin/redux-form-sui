@@ -97,7 +97,6 @@ const Password = ({
         content={error}
         style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
         inverted
-        size={popupProps?.size}
       />
     </SuiForm.Field>
   );
@@ -112,6 +111,7 @@ Password.defaultProps = {
   colspan: null,
   inputProps: {},
   onForgot: null,
+  popupProps: {},
 };
 
 Password.propTypes = {
@@ -127,6 +127,9 @@ Password.propTypes = {
   colspan: PropTypes.number,
   inputProps: PropTypes.shape({
     placeholder: PropTypes.string,
+  }),
+  popupProps: PropTypes.shape({
+    size: PropTypes.string,
   }),
   onForgot: PropTypes.func,
 };

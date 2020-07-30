@@ -49,7 +49,6 @@ const ImageEditor = ({
         content={error}
         style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
         inverted
-        size={popupProps?.size}
       />
     </SuiForm.Field>
   );
@@ -62,6 +61,7 @@ ImageEditor.defaultProps = {
   outputFormat: 'base64',
   disabled: false,
   readonly: false,
+  popupProps: {},
 };
 
 ImageEditor.propTypes = {
@@ -82,6 +82,9 @@ ImageEditor.propTypes = {
   outputFormat: PropTypes.oneOf(['file', 'base64']),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
+  popupProps: PropTypes.shape({
+    size: PropTypes.string,
+  }),
 };
 
 export default props => <Field {...props} component={ImageEditor} />;

@@ -108,7 +108,6 @@ const SelectGroup = ({ name, ...props }) => {
               content={error}
               style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
               inverted
-              size={popupProps?.size}
             />
           </SuiForm.Field>
         );
@@ -128,6 +127,7 @@ SelectGroup.defaultProps = {
   disabled: false,
   readonly: false,
   size: null,
+  popupProps: {},
 };
 
 SelectGroup.propTypes = {
@@ -137,6 +137,9 @@ SelectGroup.propTypes = {
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,
+  popupProps: PropTypes.shape({
+    size: PropTypes.string,
+  }),
 };
 
 export default SelectGroup;

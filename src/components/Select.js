@@ -170,6 +170,9 @@ Select.defaultProps = {
   disabled: false,
   readonly: false,
   size: null,
+  popupProps: {},
+  sublabelProps: {},
+  subLabel: null,
 };
 
 Select.propTypes = {
@@ -179,6 +182,14 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,
+  popupProps: PropTypes.shape({
+    size: PropTypes.string,
+  }),
+  subLabel: PropTypes.string,
+  sublabelProps: PropTypes.shape({
+    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    color: PropTypes.string,
+  }),
 };
 
 export default Select;

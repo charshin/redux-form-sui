@@ -158,7 +158,6 @@ const Search = ({
         content={error}
         style={{ opacity: !active && touched && !!error ? 0.7 : 0 }}
         inverted
-        size={popupProps?.size}
       />
     </SuiForm.Field>
   );

@@ -173,6 +173,9 @@ Input.defaultProps = {
   icon: null,
   iconPosition: 'left',
   inputProps: {},
+  popupProps: {},
+  sublabelProps: {},
+  sublabel: null,
 };
 
 Input.propTypes = {
@@ -186,6 +189,14 @@ Input.propTypes = {
   iconPosition: PropTypes.oneOf[('left', 'right')],
   inputProps: PropTypes.shape({
     placeholder: PropTypes.string,
+  }),
+  popupProps: PropTypes.shape({
+    size: PropTypes.string,
+  }),
+  sublabel: PropTypes.string,
+  sublabelProps: PropTypes.shape({
+    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    color: PropTypes.string,
   }),
 };
 
