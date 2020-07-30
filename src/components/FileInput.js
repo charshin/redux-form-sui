@@ -108,6 +108,7 @@ FileInput.defaultProps = {
   icon: null,
   iconPosition: 'left',
   inputProps: {},
+  popupProps: {},
   accept:
     'application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf,.doc,.docx,.xml,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 };
@@ -123,6 +124,9 @@ FileInput.propTypes = {
   iconPosition: PropTypes.oneOf[('left', 'right')],
   inputProps: PropTypes.shape({
     placeholder: PropTypes.string,
+  }),
+  popupProps: PropTypes.shape({
+    size: PropTypes.string,
   }),
   accept: PropTypes.string,
 };
