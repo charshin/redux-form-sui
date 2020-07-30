@@ -99,7 +99,8 @@ const Input = ({ name, ...props }) => {
             required={required}
             disabled={disabled}
             width={colspan}
-            style={{ visibility: hidden ? 'hidden' : 'visible' }}
+            // ! TODO: add animation so the form doesn't jump when showing and hiding component
+            style={{ display: hidden ? 'none' : 'initial' }}
           >
             {label && (
               <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
