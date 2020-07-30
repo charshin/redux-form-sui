@@ -1,4 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import { createElement } from 'react';
 import PropTypes from 'prop-types';
 import { FormSection, reduxForm } from 'redux-form';
