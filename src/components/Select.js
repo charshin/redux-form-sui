@@ -172,7 +172,8 @@ Select.defaultProps = {
   size: null,
   popupProps: {},
   sublabelProps: {},
-  subLabel: null,
+  sublabel: null,
+  hidden: false,
 };
 
 Select.propTypes = {
@@ -185,7 +186,8 @@ Select.propTypes = {
   popupProps: PropTypes.shape({
     size: PropTypes.string,
   }),
-  subLabel: PropTypes.string,
+  sublabel: PropTypes.string,
+  hidden: PropTypes.bool,
   sublabelProps: PropTypes.shape({
     fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     color: PropTypes.string,

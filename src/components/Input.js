@@ -169,6 +169,7 @@ Input.defaultProps = {
   label: '',
   disabled: false,
   readonly: false,
+  hidden: false,
   size: null, // ? no supply means 'medium' in semantic-ui
   icon: null,
   iconPosition: 'left',
@@ -185,6 +186,7 @@ Input.propTypes = {
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,
+  hidden: PropTypes.bool,
   icon: PropTypes.shape({ className: PropTypes.string }),
   iconPosition: PropTypes.oneOf[('left', 'right')],
   inputProps: PropTypes.shape({
