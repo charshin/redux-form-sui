@@ -2,6 +2,14 @@ import PropTypes from 'prop-types';
 import { Field, fieldPropTypes } from 'redux-form';
 import { Form as SuiForm, Popup as SuiPopup } from 'semantic-ui-react';
 import { ImageEditor as ShImageEditor } from 'snaphunt-ui';
+import * as R from 'ramda';
+
+const defaultLabelStyles = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
 
 const ImageEditor = ({
   input,
@@ -16,6 +24,7 @@ const ImageEditor = ({
   readonly,
   colspan,
   popupProps,
+  labelStyle,
 }) =>
   readonly ? null : (
     <SuiForm.Field
@@ -25,7 +34,10 @@ const ImageEditor = ({
       width={colspan}
     >
       {label && (
-        <label htmlFor={name} style={{ whiteSpace: 'pre' }}>
+        <label
+          htmlFor={name}
+          style={{ whiteSpace: 'pre', ...R.merge(defaultLabelStyles, labelStyle) }}
+        >
           {label}
         </label>
       )}
@@ -62,6 +74,7 @@ ImageEditor.defaultProps = {
   disabled: false,
   readonly: false,
   popupProps: {},
+  labelStyle: {},
 };
 
 ImageEditor.propTypes = {
@@ -84,6 +97,12 @@ ImageEditor.propTypes = {
   readonly: PropTypes.bool,
   popupProps: PropTypes.shape({
     size: PropTypes.string,
+  }),
+  labelStyle: PropTypes.shape({
+    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    marginTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    opacity: PropTypes.number,
+    fontWeight: PropTypes.number,
   }),
 };
 

@@ -10,6 +10,14 @@ import {
   Header as SuiHeader,
 } from 'semantic-ui-react';
 import { Field } from 'redux-form';
+import * as R from 'ramda';
+
+const defaultLabelStyle = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
 
 const Input = ({ name, ...props }) => {
   const render = useCallback(
@@ -26,6 +34,7 @@ const Input = ({ name, ...props }) => {
           colspan,
           inputProps,
           sublabelProps,
+          labelStyle,
         } = fieldProps;
 
         return (
@@ -35,7 +44,13 @@ const Input = ({ name, ...props }) => {
             style={{ display: hidden ? 'none' : 'initial' }}
           >
             {label && (
-              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+              <label
+                htmlFor={id || name}
+                style={{
+                  whiteSpace: 'pre',
+                  ...R.merge(defaultLabelStyle, labelStyle)
+                }}
+              >
                 {label}
               </label>
             )}
@@ -91,6 +106,7 @@ const Input = ({ name, ...props }) => {
           inputProps,
           popupProps,
           sublabelProps,
+          labelStyle,
         } = fieldProps;
 
         return (
@@ -103,7 +119,13 @@ const Input = ({ name, ...props }) => {
             style={{ display: hidden ? 'none' : 'initial' }}
           >
             {label && (
-              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+              <label
+                htmlFor={id || name}
+                style={{
+                  whiteSpace: 'pre',
+                  ...R.merge(defaultLabelStyle, labelStyle)
+                }}
+              >
                 {label}
               </label>
             )}
@@ -177,6 +199,7 @@ Input.defaultProps = {
   popupProps: {},
   sublabelProps: {},
   sublabel: null,
+  labelStyle: {},
 };
 
 Input.propTypes = {
@@ -199,6 +222,12 @@ Input.propTypes = {
   sublabelProps: PropTypes.shape({
     fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     color: PropTypes.string,
+  }),
+  labelStyle: PropTypes.shape({
+    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    marginTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    opacity: PropTypes.number,
+    fontWeight: PropTypes.number,
   }),
 };
 
