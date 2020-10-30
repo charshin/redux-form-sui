@@ -10,6 +10,13 @@ import * as R from 'ramda';
 
 import './SelectGroup.scss';
 
+const defaultLabelStyle = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
+
 const SelectGroup = ({ name, ...props }) => {
   const render = useCallback(
     ({ readonly, size, ...fieldProps }) => {
@@ -22,6 +29,7 @@ const SelectGroup = ({ name, ...props }) => {
           label,
           colspan,
           compact,
+          labelStyle,
         } = fieldProps;
 
         if (!R.is(Array, options)) {
@@ -33,7 +41,13 @@ const SelectGroup = ({ name, ...props }) => {
         return (
           <SuiForm.Field width={colspan}>
             {label && (
-              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+              <label
+                htmlFor={id || name}
+                style={{
+                  whiteSpace: 'pre',
+                  ...R.merge(defaultLabelStyle, labelStyle),
+                }}
+              >
                 {label}
               </label>
             )}
@@ -69,6 +83,7 @@ const SelectGroup = ({ name, ...props }) => {
           required,
           disabled,
           popupProps,
+          labelStyle,
         } = fieldProps;
 
         if (!options?.length) {
@@ -85,7 +100,13 @@ const SelectGroup = ({ name, ...props }) => {
             width={colspan}
           >
             {label && (
-              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
+              <label
+                htmlFor={id || name}
+                style={{
+                  whiteSpace: 'pre',
+                  ...R.merge(defaultLabelStyle, labelStyle),
+                }}
+              >
                 {label}
               </label>
             )}
@@ -124,6 +145,7 @@ const SelectGroup = ({ name, ...props }) => {
 SelectGroup.defaultProps = {
   id: '',
   label: '',
+  labelStyle: {},
   disabled: false,
   readonly: false,
   size: null,
@@ -139,6 +161,12 @@ SelectGroup.propTypes = {
   size: PropTypes.string,
   popupProps: PropTypes.shape({
     size: PropTypes.string,
+  }),
+  labelStyle: PropTypes.shape({
+    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    marginTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    opacity: PropTypes.number,
+    fontWeight: PropTypes.number,
   }),
 };
 

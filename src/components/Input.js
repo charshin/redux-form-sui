@@ -48,7 +48,7 @@ const Input = ({ name, ...props }) => {
                 htmlFor={id || name}
                 style={{
                   whiteSpace: 'pre',
-                  ...R.merge(defaultLabelStyle, labelStyle)
+                  ...R.merge(defaultLabelStyle, labelStyle),
                 }}
               >
                 {label}
@@ -123,7 +123,7 @@ const Input = ({ name, ...props }) => {
                 htmlFor={id || name}
                 style={{
                   whiteSpace: 'pre',
-                  ...R.merge(defaultLabelStyle, labelStyle)
+                  ...R.merge(defaultLabelStyle, labelStyle),
                 }}
               >
                 {label}
