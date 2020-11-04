@@ -151,7 +151,6 @@ const SelectGroup = ({ name, ...props }) => {
 SelectGroup.defaultProps = {
   id: '',
   label: '',
-  labelStyle: {},
   disabled: false,
   readonly: false,
   size: null,
