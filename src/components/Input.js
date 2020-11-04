@@ -10,7 +10,6 @@ import {
   Header as SuiHeader,
 } from 'semantic-ui-react';
 import { Field } from 'redux-form';
-import * as R from 'ramda';
 
 const defaultLabelStyle = {
   fontWeight: 400,
@@ -34,7 +33,6 @@ const Input = ({ name, ...props }) => {
           colspan,
           inputProps,
           sublabelProps,
-          labelStyle,
         } = fieldProps;
 
         return (
@@ -48,10 +46,14 @@ const Input = ({ name, ...props }) => {
                 htmlFor={id || name}
                 style={{
                   whiteSpace: 'pre',
-                  ...R.merge(defaultLabelStyle, labelStyle),
+                  ...(typeof label === 'string' && defaultLabelStyle),
                 }}
               >
-                {label}
+                {typeof label === 'string'
+                  ? label
+                  : typeof label === 'function'
+                  ? label({ style: defaultLabelStyle })
+                  : null}
               </label>
             )}
             {sublabel && (
@@ -106,7 +108,6 @@ const Input = ({ name, ...props }) => {
           inputProps,
           popupProps,
           sublabelProps,
-          labelStyle,
         } = fieldProps;
 
         return (
@@ -123,10 +124,14 @@ const Input = ({ name, ...props }) => {
                 htmlFor={id || name}
                 style={{
                   whiteSpace: 'pre',
-                  ...R.merge(defaultLabelStyle, labelStyle),
+                  ...(typeof label === 'string' && defaultLabelStyle),
                 }}
               >
-                {label}
+                {typeof label === 'string'
+                  ? label
+                  : typeof label === 'function'
+                  ? label({ style: defaultLabelStyle })
+                  : null}
               </label>
             )}
             {sublabel && (
@@ -199,13 +204,12 @@ Input.defaultProps = {
   popupProps: {},
   sublabelProps: {},
   sublabel: null,
-  labelStyle: {},
 };
 
 Input.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,
@@ -222,12 +226,6 @@ Input.propTypes = {
   sublabelProps: PropTypes.shape({
     fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     color: PropTypes.string,
-  }),
-  labelStyle: PropTypes.shape({
-    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    marginTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    opacity: PropTypes.number,
-    fontWeight: PropTypes.number,
   }),
 };
 

@@ -10,6 +10,13 @@ import {
 } from 'semantic-ui-react';
 import { Field, fieldPropTypes } from 'redux-form';
 
+const defaultLabelStyle = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
+
 const FileInput = ({
   input: { name, value: file, onFocus, onChange, onBlur },
   meta: { touched, error, active },
@@ -35,8 +42,19 @@ const FileInput = ({
       width={colspan}
     >
       {label && (
-        <label htmlFor={name} css={{ whiteSpace: 'pre', color: 'red' }}>
-          {label}
+        <label
+          htmlFor={name}
+          css={{
+            whiteSpace: 'pre',
+            color: 'red',
+            ...(typeof label === 'string' && defaultLabelStyle),
+          }}
+        >
+          {typeof label === 'string'
+            ? label
+            : typeof label === 'function'
+            ? label({ style: defaultLabelStyle })
+            : null}
         </label>
       )}
       <input
@@ -115,7 +133,7 @@ FileInput.defaultProps = {
 FileInput.propTypes = {
   ...fieldPropTypes,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,

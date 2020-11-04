@@ -36,6 +36,13 @@ import * as R from 'ramda';
 //   );
 // };
 
+const defaultLabelStyle = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
+
 const Search = ({
   // TODO Do this for other controls too: no need id, input.name should be unique
   input: { name, value, onFocus, onChange, onBlur },
@@ -104,8 +111,18 @@ const Search = ({
       width={colspan}
     >
       {label && (
-        <label htmlFor={name} style={{ whiteSpace: 'pre' }}>
-          {label}
+        <label
+          htmlFor={name}
+          style={{
+            whiteSpace: 'pre',
+            ...(typeof label === 'string' && defaultLabelStyle),
+          }}
+        >
+          {typeof label === 'string'
+            ? label
+            : typeof label === 'function'
+            ? label({ style: defaultLabelStyle })
+            : null}
         </label>
       )}
       <SuiPopup
@@ -182,7 +199,7 @@ Search.defaultProps = {
 Search.propTypes = {
   ...fieldPropTypes,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,

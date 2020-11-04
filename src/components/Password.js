@@ -10,7 +10,13 @@ import {
   Popup as SuiPopup,
 } from 'semantic-ui-react';
 import { Field, fieldPropTypes } from 'redux-form';
-import * as R from 'ramda';
+
+const defaultLabelStyle = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
 
 const Password = ({
   input,
@@ -36,7 +42,20 @@ const Password = ({
       disabled={disabled}
       width={colspan}
     >
-      {label && <label htmlFor={input.name}>{label}</label>}
+      {label && (
+        <label
+          htmlFor={input.name}
+          style={{
+            ...(typeof label === 'string' && defaultLabelStyle),
+          }}
+        >
+          {typeof label === 'string'
+            ? label
+            : typeof label === 'function'
+            ? label({ style: defaultLabelStyle })
+            : null}
+        </label>
+      )}
       <SuiPopup
         {...popupProps}
         trigger={
@@ -117,7 +136,7 @@ Password.defaultProps = {
 Password.propTypes = {
   ...fieldPropTypes,
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,

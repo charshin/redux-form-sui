@@ -12,6 +12,13 @@ import {
 import { Fields } from 'redux-form';
 import * as R from 'ramda';
 
+const defaultLabelStyle = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
+
 const Mobile = ({
   name,
   label,
@@ -43,8 +50,18 @@ const Mobile = ({
       width={colspan}
     >
       {label && (
-        <label htmlFor={number.input.name} style={{ whiteSpace: 'pre' }}>
-          {label}
+        <label
+          htmlFor={number.input.name}
+          style={{
+            whiteSpace: 'pre',
+            ...(typeof label === 'string' && defaultLabelStyle),
+          }}
+        >
+          {typeof label === 'string'
+            ? label
+            : typeof label === 'function'
+            ? label({ style: defaultLabelStyle })
+            : null}
         </label>
       )}
       <SuiPopup
@@ -131,7 +148,7 @@ Mobile.defaultProps = {
 
 Mobile.propTypes = {
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,

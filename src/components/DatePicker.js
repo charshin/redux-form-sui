@@ -11,6 +11,13 @@ import { Field } from 'redux-form';
 import 'react-datepicker/dist/react-datepicker.css';
 import './DatePicker.scss';
 
+const defaultLabelStyle = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
+
 class CustomInput extends PureComponent {
   static propTypes = {
     value: PropTypes.string.isRequired,
@@ -95,8 +102,18 @@ const DatePicker = ({ name, ...props }) => {
         return (
           <SuiForm.Field width={colspan}>
             {label && (
-              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-                {label}
+              <label
+                htmlFor={id || name}
+                style={{
+                  whiteSpace: 'pre',
+                  ...(typeof label === 'string' && defaultLabelStyle),
+                }}
+              >
+                {typeof label === 'string'
+                  ? label
+                  : typeof label === 'function'
+                  ? label({ style: defaultLabelStyle })
+                  : null}
               </label>
             )}
             <ReactDatePicker
@@ -132,8 +149,18 @@ const DatePicker = ({ name, ...props }) => {
             width={colspan}
           >
             {label && (
-              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-                {label}
+              <label
+                htmlFor={id || name}
+                style={{
+                  whiteSpace: 'pre',
+                  ...(typeof label === 'string' && defaultLabelStyle),
+                }}
+              >
+                {typeof label === 'string'
+                  ? label
+                  : typeof label === 'function'
+                  ? label({ style: defaultLabelStyle })
+                  : null}
               </label>
             )}
             <ReactDatePicker
@@ -167,7 +194,7 @@ DatePicker.defaultProps = {
 DatePicker.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,

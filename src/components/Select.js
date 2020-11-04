@@ -13,6 +13,13 @@ import * as R from 'ramda';
 
 import './Select.scss';
 
+const defaultLabelStyle = {
+  fontWeight: 400,
+  fontSize: '0.85em',
+  opacity: 0.6,
+  marginTop: '1em',
+};
+
 const Select = ({ name, ...props }) => {
   const render = useCallback(
     ({ readonly, size, ...fieldProps }) => {
@@ -43,8 +50,18 @@ const Select = ({ name, ...props }) => {
             style={{ display: hidden ? 'none' : 'initial' }}
           >
             {label && (
-              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-                {label}
+              <label
+                htmlFor={id || name}
+                style={{
+                  whiteSpace: 'pre',
+                  ...(typeof label === 'string' && defaultLabelStyle),
+                }}
+              >
+                {typeof label === 'string'
+                  ? label
+                  : typeof label === 'function'
+                  ? label({ style: defaultLabelStyle })
+                  : null}
               </label>
             )}
             {sublabel && (
@@ -112,8 +129,18 @@ const Select = ({ name, ...props }) => {
             style={{ display: hidden ? 'none' : 'initial' }}
           >
             {label && (
-              <label htmlFor={id || name} style={{ whiteSpace: 'pre' }}>
-                {label}
+              <label
+                htmlFor={id || name}
+                style={{
+                  whiteSpace: 'pre',
+                  ...(typeof label === 'string' && defaultLabelStyle),
+                }}
+              >
+                {typeof label === 'string'
+                  ? label
+                  : typeof label === 'function'
+                  ? label({ style: defaultLabelStyle })
+                  : null}
               </label>
             )}
             {sublabel && (
@@ -181,7 +208,7 @@ Select.defaultProps = {
 Select.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,

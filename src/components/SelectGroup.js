@@ -29,7 +29,6 @@ const SelectGroup = ({ name, ...props }) => {
           label,
           colspan,
           compact,
-          labelStyle,
         } = fieldProps;
 
         if (!R.is(Array, options)) {
@@ -45,10 +44,14 @@ const SelectGroup = ({ name, ...props }) => {
                 htmlFor={id || name}
                 style={{
                   whiteSpace: 'pre',
-                  ...R.merge(defaultLabelStyle, labelStyle),
+                  ...(typeof label === 'string' && defaultLabelStyle),
                 }}
               >
-                {label}
+                {typeof label === 'string'
+                  ? label
+                  : typeof label === 'function'
+                  ? label({ style: defaultLabelStyle })
+                  : null}
               </label>
             )}
             <SuiButton.Group toggle fluid compact={compact} size={size}>
@@ -83,7 +86,6 @@ const SelectGroup = ({ name, ...props }) => {
           required,
           disabled,
           popupProps,
-          labelStyle,
         } = fieldProps;
 
         if (!options?.length) {
@@ -104,10 +106,14 @@ const SelectGroup = ({ name, ...props }) => {
                 htmlFor={id || name}
                 style={{
                   whiteSpace: 'pre',
-                  ...R.merge(defaultLabelStyle, labelStyle),
+                  ...(typeof label === 'string' && defaultLabelStyle),
                 }}
               >
-                {label}
+                {typeof label === 'string'
+                  ? label
+                  : typeof label === 'function'
+                  ? label({ style: defaultLabelStyle })
+                  : null}
               </label>
             )}
             <SuiPopup
@@ -155,18 +161,12 @@ SelectGroup.defaultProps = {
 SelectGroup.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   disabled: PropTypes.bool,
   readonly: PropTypes.bool,
   size: PropTypes.string,
   popupProps: PropTypes.shape({
     size: PropTypes.string,
-  }),
-  labelStyle: PropTypes.shape({
-    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    marginTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    opacity: PropTypes.number,
-    fontWeight: PropTypes.number,
   }),
 };
 

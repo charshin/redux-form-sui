@@ -4,7 +4,7 @@ import { Form as SuiForm, Popup as SuiPopup } from 'semantic-ui-react';
 import { ImageEditor as ShImageEditor } from 'snaphunt-ui';
 import * as R from 'ramda';
 
-const defaultLabelStyles = {
+const defaultLabelStyle = {
   fontWeight: 400,
   fontSize: '0.85em',
   opacity: 0.6,
@@ -24,7 +24,6 @@ const ImageEditor = ({
   readonly,
   colspan,
   popupProps,
-  labelStyle,
 }) =>
   readonly ? null : (
     <SuiForm.Field
@@ -36,9 +35,16 @@ const ImageEditor = ({
       {label && (
         <label
           htmlFor={name}
-          style={{ whiteSpace: 'pre', ...R.merge(defaultLabelStyles, labelStyle) }}
+          style={{
+            whiteSpace: 'pre',
+            ...(typeof label === 'string' && defaultLabelStyle),
+          }}
         >
-          {label}
+          {typeof label === 'string'
+            ? label
+            : typeof label === 'function'
+            ? label({ style: defaultLabelStyle })
+            : null}
         </label>
       )}
       <SuiPopup
@@ -74,12 +80,11 @@ ImageEditor.defaultProps = {
   disabled: false,
   readonly: false,
   popupProps: {},
-  labelStyle: {},
 };
 
 ImageEditor.propTypes = {
   ...fieldPropTypes,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   required: PropTypes.bool,
   circular: PropTypes.bool,
   deletable: PropTypes.bool,
@@ -97,12 +102,6 @@ ImageEditor.propTypes = {
   readonly: PropTypes.bool,
   popupProps: PropTypes.shape({
     size: PropTypes.string,
-  }),
-  labelStyle: PropTypes.shape({
-    fontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    marginTop: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    opacity: PropTypes.number,
-    fontWeight: PropTypes.number,
   }),
 };
 
