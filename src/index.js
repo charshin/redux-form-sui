@@ -84,7 +84,7 @@ const useReduxForm = memoize(({ layout, config }) => {
           <SuiForm.Group
             key={rowKey}
             widths="equal"
-            css={{ '&&.fields': { marginBottom: '0em' } }}
+            css={{ '&&&&.fields': { marginBottom: '0em' } }}
           >
             {cols.map(({ component, render, ...controlProps }) => {
               if (component) {
