@@ -80,15 +80,32 @@ const useReduxForm = memoize(({ layout, config }) => {
         content
       ))(
       rows.map(({ id: rowKey, cols }) => (
-        <div css={{ paddingBottom: '0.5em' }}>
-          <SuiForm.Group
-            key={rowKey}
-            widths="equal"
-            css={{ '&&&&.fields': { marginBottom: '0em' } }}
-          >
-            {cols.map(({ component, render, ...controlProps }) => {
-              if (component) {
-                return createElement(component, {
+        <SuiForm.Group
+          key={rowKey}
+          widths="equal"
+          css={{ '&&&&.fields': { marginBottom: '0.5em' } }}
+        >
+          {cols.map(({ component, render, ...controlProps }) => {
+            if (component) {
+              return createElement(component, {
+                key: controlProps.id || controlProps.name,
+                disabled: formProps.disabled,
+                readonly: formProps.readonly,
+                size: formProps.size,
+                ...controlProps,
+                formProps: R.omit(['disabled', 'readonly', 'size'])(formProps),
+              });
+            }
+            if (render) {
+              return (
+                // FIXME Use material-ui Grid
+                // ? The element with prop colspan
+                // ? must be a direct child of SuiForm.Group
+                // ? for the layout to take effect.
+                // ? We have no choice but require
+                // ? user to supply the prop 'key' themselves
+                // <div key={controlProps.id || controlProps.name}>
+                render({
                   key: controlProps.id || controlProps.name,
                   disabled: formProps.disabled,
                   readonly: formProps.readonly,
@@ -97,34 +114,13 @@ const useReduxForm = memoize(({ layout, config }) => {
                   formProps: R.omit(['disabled', 'readonly', 'size'])(
                     formProps,
                   ),
-                });
-              }
-              if (render) {
-                return (
-                  // FIXME Use material-ui Grid
-                  // ? The element with prop colspan
-                  // ? must be a direct child of SuiForm.Group
-                  // ? for the layout to take effect.
-                  // ? We have no choice but require
-                  // ? user to supply the prop 'key' themselves
-                  // <div key={controlProps.id || controlProps.name}>
-                  render({
-                    key: controlProps.id || controlProps.name,
-                    disabled: formProps.disabled,
-                    readonly: formProps.readonly,
-                    size: formProps.size,
-                    ...controlProps,
-                    formProps: R.omit(['disabled', 'readonly', 'size'])(
-                      formProps,
-                    ),
-                  })
-                  // </div>
-                );
-              }
-              throw new Error('Must provide either component or render');
-            })}
-          </SuiForm.Group>
-        </div>
+                })
+                // </div>
+              );
+            }
+            throw new Error('Must provide either component or render');
+          })}
+        </SuiForm.Group>
       )),
     );
   renderSection.defaultProps = {
