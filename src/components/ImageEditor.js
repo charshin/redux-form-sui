@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Field, fieldPropTypes } from 'redux-form';
 import { Form as SuiForm, Popup as SuiPopup } from 'semantic-ui-react';
-import { ImageEditor as ShImageEditor } from 'snaphunt-ui';
+import { ImageEditor as ShImageEditor } from '@snaphunt/snaphunt-ui';
 
 const defaultLabelStyle = {
   fontWeight: 400,
