@@ -94,6 +94,7 @@
   "dependencies": {
     "@babel/runtime": "^7.5.5",
     "@emotion/core": "^10.0.22",
+    "@snaphunt/snaphunt-ui": "^0.8.3",
     "fast-memoize": "^2.5.1",
     "kickass-utilities": "^0.1.0",
     "lodash": "^4.17.20",
