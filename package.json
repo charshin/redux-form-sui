@@ -1,6 +1,6 @@
 {
   "name": "@snaphunt/redux-form-sui",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "A redux-form friendly semantic-ui component library",
   "main": "build/lib/index.js",
   "module": "build/es/index.js",
